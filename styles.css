@@ -1,0 +1,84 @@
+body {
+  margin: 0;
+  background-image: url("./images/desktop.jpg");
+  display: flex;
+  height: 100vh;
+  font: 400 20px/1.5 "Source Sans Pro", "Open Sans", Roboto, "San Francisco", Helvetica, Arial, sans-serif;
+  background-position: center;
+  background-size: cover;
+}
+
+@media (orientation: portrait) {
+  body {
+    background-image: url("./images/mobile.jpg");
+  }
+}
+#birthday-text {
+  max-width: 90%;
+  margin: auto;
+  text-align: center;
+  font-weight: bold;
+}
+#birthday-text div {
+  max-width: 500px;
+  line-height: 1.7;
+  margin-bottom: 7px;
+}
+#birthday-text div span {
+  display: inline-block;
+  padding: 7px 15px;
+  opacity: 0;
+  background: linear-gradient(to bottom, rgb(255, 255, 255), rgba(255, 255, 255, 0));
+  background-clip: text;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-size: 400% 400%;
+  background-position: 0% 100%;
+}
+#birthday-text div span.visible {
+  opacity: 1;
+  transition: opacity 0.5s, background-position 5s;
+  background-position: 0% 0%;
+}
+
+.sticker {
+  position: fixed;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+}
+.sticker.scaleX {
+  transform: scaleX(-1);
+}
+.sticker.top {
+  top: -20vh;
+}
+.sticker.bottom {
+  bottom: -20vh;
+}
+.sticker.left {
+  left: 0;
+}
+.sticker.right {
+  right: 0;
+}
+.sticker.visible {
+  opacity: 1;
+  transition: all 2s;
+}
+.sticker.visible.top {
+  top: 0;
+}
+.sticker.visible.bottom {
+  bottom: 0;
+}
+
+.stickers {
+  position: absolute;
+}
+.stickers video, .stickers img {
+  width: 20vh;
+  height: 20vh;
+}
+
+/*# sourceMappingURL=styles.css.map */
