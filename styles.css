@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-image: url("./images/desktop.jpg");
+  background-image: url("./images/desktop.jpg") !important;
   display: flex;
   height: 100vh;
   font: 400 20px/1.5 "Source Sans Pro", "Open Sans", Roboto, "San Francisco", Helvetica, Arial, sans-serif;
@@ -10,7 +10,7 @@ body {
 
 @media (orientation: portrait) {
   body {
-    background-image: url("./images/mobile.jpg");
+    background-image: url("./images/mobile.jpg") !important;
   }
 }
 #birthday-text {
@@ -73,10 +73,10 @@ body {
   bottom: 0;
 }
 
-.stickers {
+#sticker {
   position: absolute;
 }
-.stickers video, .stickers img {
+#sticker video, #sticker img {
   width: 20vh;
   height: 20vh;
 }

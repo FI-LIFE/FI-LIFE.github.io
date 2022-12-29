@@ -74,7 +74,22 @@ const data = [
         'жизнь дарит тысячи счастливых возмможностней, чтобы каждая из них была использована на все сто. Счастья, удачи, благополучия! С Днём Рождения!',
         'сбудутся твои мечты, Пусть окунешься в счастье ты, Пусть будет ярким настроенье! Будь с позитивом! С Днём рождения!',
     ]
-]
+];
+
+const stickers = [
+    {class: 'bottom right scaleX', src: 'images/2.gif', style: 'margin: 0 0 -16px 0;'},
+    {class: 'bottom left scaleX', src: 'images/3.gif', style: 'margin: 0 0 -20px 0;'},
+    {class: 'bottom left scaleX', src: 'images/4.gif', style: 'margin: 0 0 -20px -10px;'},
+    {class: 'bottom right scaleX', src: 'images/5.gif', style: 'margin-bottom: -40px;'},
+    {class: 'bottom right', src: 'images/6.gif', style: 'margin-bottom: -20px;margin-right: -16px;'},
+    {class: 'bottom right scaleX', src: 'images/7.gif', style: 'margin-bottom: -40px;'},
+    {class: 'bottom left', src: 'images/8.gif', style: 'margin-bottom: -40px;margin-left: -40px;'},
+    {
+        class: 'bottom right',
+        src: 'images/cat.png',
+        style: 'width: 150px;height: 150px;margin-bottom: -40px;margin-right: -40px;'
+    },
+];
 
 window.addEventListener('load', function () {
     let el = document.getElementById('birthday-text');
@@ -108,10 +123,19 @@ window.addEventListener('load', function () {
         }
     }, 1000);
 
-    setTimeout(() => {
-        let stickers = document.querySelectorAll('.sticker');
-        if (stickers.length) {
-            stickers[getRandomInt(0, stickers.length - 1)].classList.add('visible');
+    let stick = stickers[getRandomInt(0, stickers.length - 1)];
+    if (stick) {
+        let container = document.querySelector('.sticker');
+        container.classList.add(...stick.class.split(' '));
+        let img = document.createElement('img');
+        img.onload = function () {
+            setTimeout(() => {
+                container.classList.add('visible');
+            }, 5000);
         }
-    }, 5000);
+        img.src = stick.src;
+        img.style = stick.style;
+        img.alt = '';
+        container.appendChild(img);
+    }
 });
