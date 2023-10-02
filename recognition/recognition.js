@@ -3,18 +3,15 @@ console.log('Init');
 const Recorder = {
     recognition: null,
     btn: null,
-    interimResults: false,
+    interimResults: true,
     stop: function () {
         this.recognition.stop();
+        this.recognition = null;
     },
     start: function (btn, el_id) {
         if (this.recognition) {
-            this.recognition.stop();
-        }
-
-        if (btn !== this.btn) {
-            this.btn = btn;
-
+            this.stop();
+        } else {
             let input = document.getElementById(el_id);
 
             if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
@@ -23,6 +20,8 @@ const Recorder = {
                 let lang = document.getElementById('language').value;
                 if (lang && lang !== 'default') {
                     this.recognition.lang = lang;
+                } else {
+                    this.recognition.lang = '';
                 }
 
                 this.recognition.interimResults = this.interimResults;
@@ -35,8 +34,8 @@ const Recorder = {
                 this.recognition.onend = () => {
                     btn.classList.remove('btn-danger');
                     btn.classList.add('btn-primary');
+
                     this.recognition = null;
-                    this.btn = null;
                 };
 
                 this.recognition.onresult = (event) => {
@@ -48,12 +47,7 @@ const Recorder = {
                 };
 
                 this.recognition.onerror = event => {
-                    console.log('onerror', event);
                     alert(event.message);
-                }
-
-                this.recognition.onnomatch = event => {
-                    console.log('onnomatch', event);
                 }
 
                 this.recognition.start();
